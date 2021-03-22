@@ -14,7 +14,12 @@ if (process.env.NODE_ENV === "production") {
 	});
 }
 
-app.use(cors({origin: "*"}));
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://ecom-playground-frontend.netlify.app/");
+  next();
+});
+
+app.use(cors({origin: null}));
 app.use(express.json());
 app.use("/api", productsRouter);
 
