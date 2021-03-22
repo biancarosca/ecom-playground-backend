@@ -5,7 +5,7 @@ const productsRouter = require("./routers/productsRouter");
 
 const app = express();
 
-app.use(cors({origin: "https://ecom-playground-frontend.netlify.app"}));
+app.use(cors({origin: "*"}));
 app.use(express.json());
 
 app.use("/api", productsRouter);
