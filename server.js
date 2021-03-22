@@ -5,14 +5,6 @@ const productsRouter = require("./routers/productsRouter");
 
 const app = express();
 
-// if (process.env.NODE_ENV === "production") {
-// 	app.use(express.static("client"));
-
-// 	app.get("*", (req, res) => {
-// 		res.sendFile(path.resolve(__dirname, "client", "index.html"));
-// 	});
-// }
-
 app.use(cors({origin: "https://ecom-playground-frontend.netlify.app"}));
 app.use(express.json());
 
