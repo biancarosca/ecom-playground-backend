@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === "production") {
 	});
 }
 
-app.use(cors({origin: "https://ecom-playground-frontend.netlify.app/"}));
+app.use(cors({origin: "https://ecom-playground-frontend.netlify.app"}));
 app.use(express.json());
 
 
