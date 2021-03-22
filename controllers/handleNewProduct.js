@@ -8,12 +8,16 @@ const handleNewProduct = (req, res) => {
 	);
 	const productEventEmitter = Product.watch();
 	const sendProduct = (data) => {
+        res.setHeader(
+            "Access-Control-Allow-Origin",
+            "https://ecom-playground-frontend.netlify.app"
+        );
 		return res.write(`data: ${data}\n\n`);
 	};
 	productEventEmitter.on("change", (change) =>
 		sendProduct(JSON.stringify(change))
 	);
-    return res.send();
+    return res.write("data:\n\n");
 };
 
 module.exports = handleNewProduct;
