@@ -13,7 +13,7 @@ const handleNewProduct = (req, res) => {
 	productEventEmitter.on("change", (change) =>
 		sendProduct(JSON.stringify(change))
 	);
-    return res.write();
+    return res.send();
 };
 
 module.exports = handleNewProduct;
