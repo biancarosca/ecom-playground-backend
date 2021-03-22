@@ -8,11 +8,12 @@ const handleNewProduct = (req, res) => {
 	);
 	const productEventEmitter = Product.watch();
 	const sendProduct = (data) => {
-		res.write(`data: ${data}\n\n`);
+		return res.write(`data: ${data}\n\n`);
 	};
 	productEventEmitter.on("change", (change) =>
 		sendProduct(JSON.stringify(change))
 	);
+    return res.write();
 };
 
 module.exports = handleNewProduct;
