@@ -13,18 +13,10 @@ if (process.env.NODE_ENV === "production") {
 	});
 }
 
-app.use(cors());
+app.use(cors({origin: "https://ecom-playground-frontend.netlify.app/"}));
 app.use(express.json());
 
-app.use((req, res, next) => {
-	res.setHeader(
-		"Access-Control-Allow-Origin",
-		"https://ecom-playground-frontend.netlify.app"
-	);
-  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.setHeader("Access-Control-Allow-Methods","GET, POST, PATCH, DELETE, OPTIONS");
-	next();
-});
+
 
 app.use("/api", productsRouter);
 
