@@ -5,9 +5,7 @@ const handleNewProduct = (req, res) => {
 	const productEventEmitter = Product.watch();
     const sendProduct = (data) => {
         res.write(`data: ${data}\n\n`);
-
     }
-    res.write("data:");
 	productEventEmitter.on('change', change => sendProduct(JSON.stringify(change)))
 };
 
