@@ -3,18 +3,15 @@ const Product = require("../models/productModel");
 const handleNewProduct = (req, res) => {
 	res.setHeader("Content-Type", "text/event-stream");
 	res.setHeader("Cache-Control", "no-transform");
-	res.setHeader("Content-Encoding","identity");
-	res.connection.setTimeout(0);
+	console.log(res.connection);
+	res.setTimeout(600 * 60 * 1000);
 	const productEventEmitter = Product.watch();
 	const sendProduct = (data) => {
-		const sendData = `data: ${data}\n\n`;
-		res.setHeader("Content-length",sendData.length);
-		res.write(sendData);
+		res.write(`data: ${data}\n\n`);
 	};
 	productEventEmitter.on("change", (change) =>
 		sendProduct(JSON.stringify(change))
 	);
-	res.setHeader("Content-length",5);
 	res.write("data:");
 };
 
