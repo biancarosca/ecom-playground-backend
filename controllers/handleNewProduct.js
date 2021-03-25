@@ -7,12 +7,13 @@ const handleNewProduct = (req, res) => {
 	res.connection.setTimeout(0);
 	const productEventEmitter = Product.watch();
 	const sendProduct = (data) => {
-		res.write(`data: ${data}\n\n`);
+		const sendData = `data: ${data}\n\n`;
+		res.setHeader("Content-length",sendData.length);
+		res.write(sendData);
 	};
 	productEventEmitter.on("change", (change) =>
 		sendProduct(JSON.stringify(change))
 	);
-    res.write("data:");
 };
 
 module.exports = handleNewProduct;
