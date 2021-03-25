@@ -14,6 +14,8 @@ const handleNewProduct = (req, res) => {
 	productEventEmitter.on("change", (change) =>
 		sendProduct(JSON.stringify(change))
 	);
+	res.setHeader("Content-length",5);
+	res.write("data:");
 };
 
 module.exports = handleNewProduct;
